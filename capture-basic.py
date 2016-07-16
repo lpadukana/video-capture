@@ -37,12 +37,16 @@ def esc_pressed():
   return cv2.waitKey(1) == 27 # ESC
 
 
+def resize_reduce(img, factor):
+  height, width = img.shape[:2]
+  return cv2.resize(img, (width//factor, height//factor), interpolation = cv2.INTER_AREA)
+  # INTER_CUBIC better for enlarging
+
+
 with cv_window("preview") as win:
   with cv_camera(0) as camera:
     for frame in cv_frames(camera):
-      height, width = frame.shape[:2]
-      small = cv2.resize(frame, (width//2, height//2), interpolation = cv2.INTER_AREA) # INTER_CUBIC better for enlarging
-      cv2.imshow(win, small)
+      cv2.imshow(win, resize_reduce(frame, 4))
       if esc_pressed(): break
 
 # cv2.destroyAllWindows()
