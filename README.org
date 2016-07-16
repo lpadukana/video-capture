@@ -1,0 +1,13 @@
+* video-capture
+A starting point for opencv (python) video capture
+
+** Setup
+#+BEGIN_SRC shell
+conda create --name cv python=2 opencv
+#+END_SRC
+
+** Running
+#+BEGIN_SRC shell
+source activate cv
+python capture-basic.py
+#+END_SRC
